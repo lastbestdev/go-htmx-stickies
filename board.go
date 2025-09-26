@@ -8,19 +8,20 @@ type Board struct {
 	Id        int
 	Name      string
 	CreatedAt time.Time
-	Stickies  []Sticky
+	StickyIds []int
 }
 
 var boardCounter = 0
 
-func createBoard(name string) *Board {
+func createBoard(name string) Board {
 	// TODO: replace with int id with guid
 	id := boardCounter
 	boardCounter++
 
 	createdAt := time.Now()
 
-	return &Board{Id: id, Name: name, Stickies: []Sticky{}, CreatedAt: createdAt}
+	board := Board{Id: id, Name: name, StickyIds: []int{}, CreatedAt: createdAt}
+	return board
 }
 
 func (board *Board) saveBoard() {
