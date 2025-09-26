@@ -2,12 +2,15 @@
 a minimalist, collaboration tool for placing sticky notes on a public board. anonymous by default.
 
 ## tech
-htmx, go
+htmx + go (templ)
 
 ## features
-- join stickies board
-- create sticky notes (optionally: show author)
-- place sticky notes
-- view stickies placed in real time (up to 5 users per board/session)
-
+- single user support
+    - create board
+    - create sticky notes (aka stickies)
+    - place stickies on board
+- multi-user support
+    - multi-user session (up to 5-10 users per board/session)
+    - poll stickies/board every 5 seconds
+    - stretch: view stickies placed in near real time
 
