@@ -2,34 +2,33 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
-	"os"
 )
 
-// TODO: remove templ testing
-func testTempl() {
-	component := hello("TEST")
-	component.Render(context.Background(), os.Stdout)
-}
-
-func getBoard(w http.ResponseWriter, r *http.Request) {
-	board := createBoard("My Board")
-	fmt.Fprintf(w, "Board ID=%d name: %s", board.Id, board.Name)
-}
-
-func getSticky(w http.ResponseWriter, r *http.Request) {
-	sticky := createSticky("This is my sticky note", 0, 0)
-	fmt.Fprintf(w, "Sticky ID=%d content: %s", sticky.Id, sticky.Content)
+func getBoard(board Board) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		component := renderBoard(board)
+		component.Render(context.Background(), w)
+	}
 }
 
 func main() {
-	// board handlers
-	http.HandleFunc("/board", getBoard)
+	// create 3 test stickies (TODO: remove)
+	sticky1 := createSticky("Kobe is the goat", 0, 0)
+	sticky2 := createSticky("LeGoat is my goat", 20, 20)
+	sticky3 := createSticky("MJ has 6 rings", 40, 40)
 
-	// sticky handlers
-	http.HandleFunc("/sticky", getSticky)
+	// create a sticky board (TODO: remove)
+	board := createBoard("Goat debate")
+
+	// add stickies to board (TODO: remove)
+	addSticky(&board, sticky1)
+	addSticky(&board, sticky2)
+	addSticky(&board, sticky3)
+
+	// board handlers
+	http.HandleFunc("/board", getBoard(board))
 
 	// start webserver on port 8080
 	log.Fatal(http.ListenAndServe(":8080", nil))

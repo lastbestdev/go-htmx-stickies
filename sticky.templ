@@ -1,0 +1,17 @@
+package main
+
+templ renderSticky(s Sticky) {
+	<style>
+		.sticky {
+            height: 100px;
+            width: 100px;
+
+            padding: 8px;
+            border: 1px solid black;
+        }
+	</style>
+
+	<div id="sticky-{s.Id}" class="sticky">
+		{ s.Content }
+	</div>
+}

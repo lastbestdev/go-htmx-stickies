@@ -1,0 +1,28 @@
+package main
+
+templ renderBoard(b Board) {
+    <style>
+        .container {
+            margin: 16px;
+        }
+
+        .board {            
+            padding: 8px;
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+
+            border: 2px solid red;
+        }
+    </style>
+
+    <div class="container">
+        <h1>{ b.Name }</h1>
+        <div id="board" class="board">
+            for _, sticky := range b.Stickys {
+                @renderSticky(sticky)
+            }
+        </div>
+    </div>
+    
+}
