@@ -1,0 +1,21 @@
+package main
+
+templ renderAddStickyForm(board Board) {
+    <style>
+        .add-sticky-form {
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .add-sticky-form textarea {
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+
+    <form class="add-sticky-form" hx-post="/sticky" hx-target="#board" hx-swap="beforeend">
+        <textarea name="content" placeholder="Add note content..."></textarea>
+        <input type="hidden" name="board_id" value={ board.Id }>
+        <button type="submit">Add Sticky</button>
+    </form>
+}

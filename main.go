@@ -4,13 +4,49 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"strconv"
 )
 
-func getBoard(board Board) func(w http.ResponseWriter, r *http.Request) {
+func showBoard(board Board) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		component := renderBoard(board)
 		component.Render(context.Background(), w)
 	}
+}
+
+func getAddStickyForm(board Board) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		component := renderAddStickyForm(board)
+		component.Render(context.Background(), w)
+	}
+}
+
+func postSticky(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	content := r.FormValue("content")
+	boardId, err := strconv.Atoi(r.FormValue("board_id"))
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	sticky := createSticky(content, 0, 0)
+
+	board := getBoard(boardId)
+	if board == nil {
+		http.Error(w, "Board not found", http.StatusNotFound)
+		return
+	}
+
+	addSticky(board, sticky)
+
+	// render new sticky and return component
+	component := renderSticky(sticky)
+	component.Render(context.Background(), w)
 }
 
 func main() {
@@ -27,8 +63,17 @@ func main() {
 	addSticky(&board, sticky2)
 	addSticky(&board, sticky3)
 
-	// board handlers
-	http.HandleFunc("/board", getBoard(board))
+	// BEGIN: add handlers
+	http.HandleFunc("/board", showBoard(board))
+
+	http.HandleFunc("/forms/add-sticky", getAddStickyForm(board))
+
+	http.HandleFunc("/sticky", postSticky)
+
+	// serve static assets (including HTMX)
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+
+	// END: add handlers
 
 	// start webserver on port 8080
 	log.Fatal(http.ListenAndServe(":8080", nil))

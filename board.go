@@ -11,23 +11,32 @@ type Board struct {
 	Stickys   []Sticky
 }
 
-var boardCounter = 0
+// in-memory storage of boards (TODO: add db)
+var boards = []Board{}
 
 func createBoard(name string) Board {
 	// TODO: replace with int id with guid
-	id := boardCounter
-	boardCounter++
-
+	id := len(boards)
 	createdAt := time.Now()
 
 	board := Board{Id: id, Name: name, Stickys: []Sticky{}, CreatedAt: createdAt}
+
+	// TODO: update write to DB
+	boards = append(boards, board)
+
 	return board
+}
+
+func getBoard(id int) *Board {
+	for i := range boards {
+		if boards[i].Id == id {
+			return &boards[i]
+		}
+	}
+
+	return nil
 }
 
 func addSticky(board *Board, sticky Sticky) {
 	board.Stickys = append(board.Stickys, sticky)
-}
-
-func (board *Board) saveBoard() {
-	// TODO: add save board logic here
 }

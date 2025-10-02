@@ -8,7 +8,7 @@ package main
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func renderBoard(b Board) templ.Component {
+func renderAddStickyForm(board Board) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,30 +29,20 @@ func renderBoard(b Board) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<head><script src=\"assets/htmx.min.js\"></script></head><style>\n        .container {\n            margin: 16px;\n            display: flex;\n            flex-direction: column;\n            gap: 8px;\n        }\n\n        .board {            \n            padding: 8px;\n            display: flex;\n            flex-direction: row;\n            gap: 8px;\n\n            border: 2px solid red;\n        }\n    </style><div class=\"container\"><h1>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n        .add-sticky-form {\n            display: inline-block;\n            margin-top: 8px;\n        }\n\n        .add-sticky-form textarea {\n            width: 200px;\n            height: 100px;\n        }\n    </style><form class=\"add-sticky-form\" hx-post=\"/sticky\" hx-target=\"#board\" hx-swap=\"beforeend\"><textarea name=\"content\" placeholder=\"Add note content...\"></textarea> <input type=\"hidden\" name=\"board_id\" value=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
-		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(b.Name)
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(board.Id)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `board.templ`, Line: 27, Col: 20}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `add-sticky.templ`, Line: 18, Col: 61}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</h1><div id=\"board\" class=\"board\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		for _, sticky := range b.Stickys {
-			templ_7745c5c3_Err = renderSticky(sticky).Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><button id=\"add-sticky\" hx-get=\"/forms/add-sticky\" hx-target=\"#add-sticky\" hx-swap=\"outerHTML\">Add Sticky</button></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"> <button type=\"submit\">Add Sticky</button></form>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

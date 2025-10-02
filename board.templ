@@ -1,9 +1,16 @@
 package main
 
 templ renderBoard(b Board) {
+    <head>
+        <script src="assets/htmx.min.js"></script>
+    </head>
+
     <style>
         .container {
             margin: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .board {            
@@ -23,6 +30,7 @@ templ renderBoard(b Board) {
                 @renderSticky(sticky)
             }
         </div>
+        <button id="add-sticky" hx-get="/forms/add-sticky" hx-target="#add-sticky" hx-swap="outerHTML">Add Sticky</button>
     </div>
     
 }
