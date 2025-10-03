@@ -1,6 +1,8 @@
-package main
+package components
 
-templ renderAddStickyForm(board Board) {
+import "stickies/internal/services"
+
+templ RenderAddStickyForm(board services.Board) {
     <style>
         .add-sticky-form {
             display: inline-block;

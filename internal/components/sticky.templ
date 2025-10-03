@@ -1,6 +1,8 @@
-package main
+package components
 
-templ renderSticky(s Sticky) {
+import "stickies/internal/services"
+
+templ RenderSticky(s services.Sticky) {
 	<style>
 		.sticky {
             height: 100px;
@@ -11,7 +13,7 @@ templ renderSticky(s Sticky) {
         }
 	</style>
 
-	<div id="sticky-{s.Id}" class="sticky">
+	<div id="sticky-{ s.Id }" class="sticky">
 		{ s.Content }
 	</div>
 }

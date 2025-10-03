@@ -1,6 +1,8 @@
-package main
+package components
 
-templ renderBoard(b Board) {
+import "stickies/internal/services"
+
+templ RenderBoard(b services.Board) {
     <head>
         <script src="assets/htmx.min.js"></script>
     </head>
@@ -26,8 +28,8 @@ templ renderBoard(b Board) {
     <div class="container">
         <h1>{ b.Name }</h1>
         <div id="board" class="board">
-            for _, sticky := range b.Stickys {
-                @renderSticky(sticky)
+            for _, sticky := range services.GetStickies(b) {
+                @RenderSticky(sticky)
             }
         </div>
         <button id="add-sticky" hx-get="/forms/add-sticky" hx-target="#add-sticky" hx-swap="outerHTML">Add Sticky</button>
