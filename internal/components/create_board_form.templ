@@ -1,0 +1,19 @@
+package components
+
+templ RenderCreateBoardForm() {
+    <style>
+        .create-board-form {
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .create-board-form input {
+            width: 200px;
+        }
+    </style>
+
+    <form class="create-board-form" hx-post="/board" hx-target="body" hx-swap="innerHTML">
+        <input type="text" name="name" placeholder="Board name...">
+        <button type="submit">Create Board</button>
+    </form>
+}

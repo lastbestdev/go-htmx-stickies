@@ -31,11 +31,11 @@ func CreateSticky(content string, board *Board) Sticky {
 	return sticky
 }
 
-func GetStickies(Board Board) []Sticky {
+func GetStickies(board Board) []Sticky {
 	var results []Sticky
 
 	for i := range stickies {
-		if stickies[i].Board != nil && stickies[i].Board.Id == Board.Id {
+		if stickies[i].Board != nil && stickies[i].Board.Id == board.Id {
 			results = append(results, stickies[i])
 		}
 	}

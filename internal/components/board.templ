@@ -32,7 +32,7 @@ templ RenderBoard(b services.Board) {
                 @RenderSticky(sticky)
             }
         </div>
-        <button id="add-sticky" hx-get="/forms/add-sticky" hx-target="#add-sticky" hx-swap="outerHTML">Add Sticky</button>
+        <button hx-get="/forms/add-sticky" hx-swap="outerHTML">Add Sticky</button>
     </div>
     
 }
