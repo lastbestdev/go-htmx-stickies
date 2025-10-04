@@ -1,16 +1,18 @@
 # stickies
-a minimalist, collaboration tool for placing sticky notes on a public board. anonymous by default.
+a minimalist tool for adding sticky notes to a board.
 
 ## tech
-htmx + go (templ)
+htmx + go 
 
 ## features
 - single user support
     - create board
-    - create sticky notes (aka stickies)
-    - place stickies on board
-- multi-user support
-    - multi-user session (up to 5-10 users per board/session)
-    - poll stickies/board every 5 seconds
-    - stretch: view stickies placed in near real time
+    - create stickies
+    - delete stickies 
 
+## working on
+- [ ] feature: add database 
+- [ ] styling: make UI look not terrible
+
+## demo (404: css not found)
+![best basketball player of all time](stickies_demo_10_3_25.gif)
