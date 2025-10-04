@@ -1,10 +1,13 @@
 package components
 
-import "stickies/internal/services"
+import(
+   "strconv" 
+   "stickies/internal/services"
+)
 
 templ RenderBoard(b services.Board) {
     <head>
-        <script src="assets/htmx.min.js"></script>
+        <script src="/assets/htmx.min.js"></script>
     </head>
 
     <style>
@@ -32,7 +35,7 @@ templ RenderBoard(b services.Board) {
                 @RenderSticky(sticky)
             }
         </div>
-        <button hx-get="/forms/add-sticky" hx-swap="outerHTML">Add Sticky</button>
+        <button hx-get={ "/forms/add-sticky?board_id=" + strconv.Itoa(b.Id) } hx-swap="outerHTML">Add Sticky</button>
     </div>
     
 }

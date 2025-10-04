@@ -5,9 +5,11 @@ import (
 	"stickies/internal/components"
 	"stickies/internal/services"
 	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
-func BoardHandler(w http.ResponseWriter, r *http.Request) {
+func BoardsHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		getBoard(w, r)
@@ -19,9 +21,9 @@ func BoardHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getBoard(w http.ResponseWriter, r *http.Request) {
-	// TODO: update to path parameter with gorilla/mux
-	id := r.URL.Query().Get("id")
+	id := mux.Vars(r)["id"]
 	boardId, err := strconv.Atoi(id)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

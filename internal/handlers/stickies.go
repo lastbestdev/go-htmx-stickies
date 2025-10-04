@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func StickyHandler(w http.ResponseWriter, r *http.Request) {
+func StickiesHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodPost:
 		postSticky(w, r)

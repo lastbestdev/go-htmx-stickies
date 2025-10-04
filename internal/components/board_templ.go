@@ -8,7 +8,10 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import "stickies/internal/services"
+import (
+	"stickies/internal/services"
+	"strconv"
+)
 
 func RenderBoard(b services.Board) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -31,14 +34,14 @@ func RenderBoard(b services.Board) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<head><script src=\"assets/htmx.min.js\"></script></head><style>\n        .container {\n            margin: 16px;\n            display: flex;\n            flex-direction: column;\n            gap: 8px;\n        }\n\n        .board {            \n            padding: 8px;\n            display: flex;\n            flex-direction: row;\n            gap: 8px;\n\n            border: 2px solid red;\n        }\n    </style><div class=\"container\"><h1>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<head><script src=\"/assets/htmx.min.js\"></script></head><style>\n        .container {\n            margin: 16px;\n            display: flex;\n            flex-direction: column;\n            gap: 8px;\n        }\n\n        .board {            \n            padding: 8px;\n            display: flex;\n            flex-direction: row;\n            gap: 8px;\n\n            border: 2px solid red;\n        }\n    </style><div class=\"container\"><h1>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(b.Name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/board.templ`, Line: 29, Col: 20}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/board.templ`, Line: 32, Col: 20}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -54,7 +57,20 @@ func RenderBoard(b services.Board) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><button hx-get=\"/forms/add-sticky\" hx-swap=\"outerHTML\">Add Sticky</button></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><button hx-get=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var3 string
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs("/forms/add-sticky?board_id=" + strconv.Itoa(b.Id))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/board.templ`, Line: 38, Col: 75}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" hx-swap=\"outerHTML\">Add Sticky</button></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

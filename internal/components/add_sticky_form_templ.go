@@ -8,9 +8,7 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import "stickies/internal/services"
-
-func RenderAddStickyForm(board services.Board) templ.Component {
+func RenderAddStickyForm(board_id int) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -31,14 +29,14 @@ func RenderAddStickyForm(board services.Board) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n        .add-sticky-form {\n            display: inline-block;\n            margin-top: 8px;\n        }\n\n        .add-sticky-form textarea {\n            width: 200px;\n            height: 100px;\n        }\n    </style><form class=\"add-sticky-form\" hx-post=\"/sticky\" hx-target=\"#board\" hx-swap=\"beforeend\"><textarea name=\"content\" placeholder=\"Add note content...\"></textarea> <input type=\"hidden\" name=\"board_id\" value=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n        .add-sticky-form {\n            display: inline-block;\n            margin-top: 8px;\n        }\n\n        .add-sticky-form textarea {\n            width: 200px;\n            height: 100px;\n        }\n    </style><form class=\"add-sticky-form\" hx-post=\"/stickies\" hx-target=\"#board\" hx-swap=\"beforeend\"><textarea name=\"content\" placeholder=\"Add note content...\"></textarea> <input type=\"hidden\" name=\"board_id\" value=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
-		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(board.Id)
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(board_id)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/add_sticky_form.templ`, Line: 20, Col: 61}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/add_sticky_form.templ`, Line: 18, Col: 61}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {

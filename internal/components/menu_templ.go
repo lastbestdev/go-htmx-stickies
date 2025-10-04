@@ -29,7 +29,7 @@ func RenderMenu() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<head><script src=\"assets/htmx.min.js\"></script></head><style>\n        .menu {\n            margin: 16px;\n            display: flex;\n            flex-direction: column;\n            gap: 8px;\n        }\n    </style><div class=\"menu\"><h1>Stickies.io</h1><button hx-get=\"/forms/create-board\" hx-swap=\"outerHTML\">Create a board</button></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<head><script src=\"/assets/htmx.min.js\"></script></head><style>\n        .menu {\n            margin: 16px;\n            display: flex;\n            flex-direction: column;\n            gap: 8px;\n        }\n    </style><div class=\"menu\"><h1>Stickies.io</h1><button hx-get=\"/forms/create-board\" hx-swap=\"outerHTML\">Create a board</button></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

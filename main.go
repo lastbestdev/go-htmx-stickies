@@ -6,6 +6,8 @@ import (
 	"stickies/internal/components"
 	"stickies/internal/handlers"
 	"stickies/internal/services"
+
+	"github.com/gorilla/mux"
 )
 
 func main() {
@@ -17,20 +19,23 @@ func main() {
 	services.CreateSticky("LeGoat is my goat", &board)
 	services.CreateSticky("MJ has 6 rings", &board)
 
+	// create router
+	router := mux.NewRouter()
+
 	// BEGIN: add handlers
-	http.HandleFunc("/", handlers.ComponentRenderer(components.RenderMenu()))
+	router.HandleFunc("/", handlers.ComponentRenderer(components.RenderMenu()))
 
-	http.HandleFunc("/board", handlers.BoardHandler)
-	http.HandleFunc("/sticky", handlers.StickyHandler)
+	router.HandleFunc("/boards", handlers.BoardsHandler)
+	router.HandleFunc("/boards/{id}", handlers.BoardsHandler)
+	router.HandleFunc("/stickies", handlers.StickiesHandler)
+	router.HandleFunc("/stickies/{id}", handlers.StickiesHandler)
+	router.HandleFunc("/forms/{form_name}", handlers.FormsHandler)
 
-	http.HandleFunc("/forms/create-board", handlers.ComponentRenderer(components.RenderCreateBoardForm()))
-	http.HandleFunc("/forms/add-sticky", handlers.ComponentRenderer(components.RenderAddStickyForm(board)))
-
-	// serve static assets (including HTMX)
-	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+	// serve static assets (including HTMX dist)
+	router.PathPrefix("/assets").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
 	// END: add handlers
 
 	// start webserver on port 8080
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }

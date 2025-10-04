@@ -1,8 +1,6 @@
 package components
 
-import "stickies/internal/services"
-
-templ RenderAddStickyForm(board services.Board) {
+templ RenderAddStickyForm(board_id int) {
     <style>
         .add-sticky-form {
             display: inline-block;
@@ -15,9 +13,9 @@ templ RenderAddStickyForm(board services.Board) {
         }
     </style>
 
-    <form class="add-sticky-form" hx-post="/sticky" hx-target="#board" hx-swap="beforeend">
+    <form class="add-sticky-form" hx-post="/stickies" hx-target="#board" hx-swap="beforeend">
         <textarea name="content" placeholder="Add note content..."></textarea>
-        <input type="hidden" name="board_id" value={ board.Id }>
+        <input type="hidden" name="board_id" value={ board_id }>
         <button type="submit">Add Sticky</button>
     </form>
 }

@@ -12,7 +12,7 @@ templ RenderCreateBoardForm() {
         }
     </style>
 
-    <form class="create-board-form" hx-post="/board" hx-target="body" hx-swap="innerHTML">
+    <form class="create-board-form" hx-post="/boards" hx-target="body" hx-swap="innerHTML">
         <input type="text" name="name" placeholder="Board name...">
         <button type="submit">Create Board</button>
     </form>

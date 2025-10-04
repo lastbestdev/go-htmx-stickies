@@ -29,7 +29,7 @@ func RenderCreateBoardForm() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n        .create-board-form {\n            display: inline-block;\n            margin-top: 8px;\n        }\n\n        .create-board-form input {\n            width: 200px;\n        }\n    </style><form class=\"create-board-form\" hx-post=\"/board\" hx-target=\"body\" hx-swap=\"innerHTML\"><input type=\"text\" name=\"name\" placeholder=\"Board name...\"> <button type=\"submit\">Create Board</button></form>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n        .create-board-form {\n            display: inline-block;\n            margin-top: 8px;\n        }\n\n        .create-board-form input {\n            width: 200px;\n        }\n    </style><form class=\"create-board-form\" hx-post=\"/boards\" hx-target=\"body\" hx-swap=\"innerHTML\"><input type=\"text\" name=\"name\" placeholder=\"Board name...\"> <button type=\"submit\">Create Board</button></form>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
