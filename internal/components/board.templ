@@ -15,10 +15,13 @@ templ RenderBoard(b services.Board) {
             margin: 16px;
             display: flex;
             flex-direction: column;
+            justify-content: start;
+            align-items: flex-start;
             gap: 8px;
         }
 
-        .board {            
+        .board {           
+            width: 100%; 
             padding: 8px;
             display: flex;
             flex-direction: row;
