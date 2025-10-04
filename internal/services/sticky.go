@@ -42,3 +42,15 @@ func GetStickies(board Board) []Sticky {
 
 	return results
 }
+
+func DeleteSticky(id int) bool {
+	for i := range stickies {
+		if stickies[i].Id == id {
+			stickies = append(stickies[:i], stickies[i+1:]...)
+			return true
+		}
+	}
+
+	// return false when unable to delete sticky
+	return false
+}

@@ -33,7 +33,6 @@ func main() {
 
 	// serve static assets (including HTMX dist)
 	router.PathPrefix("/assets").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-
 	// END: add handlers
 
 	// start webserver on port 8080

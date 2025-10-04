@@ -1,6 +1,9 @@
 package components
 
-import "stickies/internal/services"
+import (
+	"stickies/internal/services"
+	"strconv"
+)
 
 templ RenderSticky(s services.Sticky) {
 	<style>
@@ -8,12 +11,26 @@ templ RenderSticky(s services.Sticky) {
             height: 100px;
             width: 100px;
 
-            padding: 8px;
+            padding: 4px;
             border: 1px solid black;
-        }
+        }	
+
+		.content {
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.delete-x {
+			float: right;
+			color: red;
+			cursor: pointer;
+			border: 1px solid red;
+			padding: 0 4px;
+		}
 	</style>
 
 	<div id="sticky-{ s.Id }" class="sticky">
-		{ s.Content }
+		<span hx-delete={ "/stickies/" + strconv.Itoa(s.Id) } class="delete-x">X</span>
+		<p class="content">{ s.Content }</p>
 	</div>
 }

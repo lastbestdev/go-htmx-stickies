@@ -5,12 +5,16 @@ import (
 	"stickies/internal/components"
 	"stickies/internal/services"
 	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 func StickiesHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodPost:
 		postSticky(w, r)
+	case http.MethodDelete:
+		deleteSticky(w, r)
 	default:
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
@@ -40,4 +44,16 @@ func postSticky(w http.ResponseWriter, r *http.Request) {
 	// render new sticky component
 	component := components.RenderSticky(sticky)
 	ComponentRenderer(component)(w, r)
+}
+
+func deleteSticky(w http.ResponseWriter, r *http.Request) {
+	id := mux.Vars(r)["id"]
+	stickyId, err := strconv.Atoi(id)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	services.DeleteSticky(stickyId)
 }
