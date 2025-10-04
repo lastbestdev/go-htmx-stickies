@@ -29,8 +29,8 @@ templ RenderSticky(s services.Sticky) {
 		}
 	</style>
 
-	<div id="sticky-{ s.Id }" class="sticky">
-		<span hx-delete={ "/stickies/" + strconv.Itoa(s.Id) } class="delete-x">X</span>
+	<div id={ "sticky-" + strconv.Itoa(s.Id) } class="sticky">
+		<span hx-delete={ "/stickies/" + strconv.Itoa(s.Id) } hx-swap="outerHTML" hx-target={ "#sticky-" + strconv.Itoa(s.Id) } class="delete-x">X</span>
 		<p class="content">{ s.Content }</p>
 	</div>
 }
