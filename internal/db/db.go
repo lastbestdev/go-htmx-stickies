@@ -7,7 +7,11 @@ import (
 	_ "github.com/lib/pq"
 )
 
-var DB *sql.DB
+type Store struct {
+	db *sql.DB
+}
+
+var store *Store
 
 func InitDB(username, password, port string) (bool, error) {
 	db, _ := sql.Open("postgres", "postgres://"+username+":"+password+"@localhost:"+port+"/postgres?sslmode=disable")
@@ -23,5 +27,10 @@ func InitDB(username, password, port string) (bool, error) {
 		return false, err
 	}
 
+	store = &Store{db: db}
 	return true, nil
+}
+
+func GetStore() *Store {
+	return store
 }

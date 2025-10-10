@@ -1,16 +1,11 @@
 package db
 
 import (
-	"context"
 	"database/sql"
-	"time"
 )
 
 func initializeTables(db *sql.DB) error {
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-
-	_, err := db.ExecContext(ctx, `
+	_, err := db.Exec(`
 		CREATE TABLE IF NOT EXISTS boards (
 			id SERIAL PRIMARY KEY,
 			name TEXT NOT NULL,
@@ -21,7 +16,7 @@ func initializeTables(db *sql.DB) error {
 		panic(err)
 	}
 
-	_, err = db.ExecContext(ctx, `
+	_, err = db.Exec(`
 		CREATE TABLE IF NOT EXISTS stickies (
 			id SERIAL PRIMARY KEY,
 			content TEXT NOT NULL,

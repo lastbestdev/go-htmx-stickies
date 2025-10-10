@@ -33,13 +33,7 @@ func postSticky(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	board := services.GetBoard(boardId)
-	if board == nil {
-		http.Error(w, "Board not found", http.StatusNotFound)
-		return
-	}
-
-	sticky := services.CreateSticky(content, board)
+	sticky := services.CreateSticky(content, boardId)
 
 	// render new sticky component
 	component := components.RenderSticky(sticky)

@@ -1,11 +1,11 @@
 package components
 
 import (
-	"stickies/internal/services"
+	"stickies/internal/models"
 	"strconv"
 )
 
-templ RenderSticky(s services.Sticky) {
+templ RenderSticky(s models.Sticky) {
 	<style>
 		.sticky {
             height: 100px;

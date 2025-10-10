@@ -2,10 +2,11 @@ package components
 
 import(
    "strconv" 
-   "stickies/internal/services"
+   "stickies/internal/models"
+"stickies/internal/services"
 )
 
-templ RenderBoard(b services.Board) {
+templ RenderBoard(b models.Board) {
     <head>
         <script src="/assets/htmx.min.js"></script>
     </head>
@@ -34,7 +35,7 @@ templ RenderBoard(b services.Board) {
     <div class="container">
         <h1>{ b.Name }</h1>
         <div id="board" class="board">
-            for _, sticky := range services.GetStickies(b) {
+            for _, sticky := range services.GetStickies(b.Id) {
                 @RenderSticky(sticky)
             }
         </div>
