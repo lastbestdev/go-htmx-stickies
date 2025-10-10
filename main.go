@@ -3,7 +3,9 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 	"stickies/internal/components"
+	"stickies/internal/db"
 	"stickies/internal/handlers"
 	"stickies/internal/services"
 
@@ -11,6 +13,16 @@ import (
 )
 
 func main() {
+	// initialize db connection
+	username := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASSWORD")
+	port := os.Getenv("DB_PORT")
+
+	if username == "" || password == "" || port == "" {
+		log.Fatal("Database credentials not set in environment variables")
+	}
+	db.InitDB(username, password, port)
+
 	// create a sticky board (TODO: remove)
 	board := services.CreateBoard("Goat Debate")
 
