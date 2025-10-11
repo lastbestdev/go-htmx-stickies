@@ -19,7 +19,18 @@ func CreateSticky(content string, board_id int) int {
 	return sticky_id
 }
 
-func GetStickies(board_id int) []models.Sticky {
+func GetSticky(sticky_id int) *models.Sticky {
+	sticky, err := store.GetSticky(sticky_id)
+
+	if err != nil {
+		fmt.Printf("Error getting sticky from store: %v\n", err)
+		return nil
+	}
+
+	return sticky
+}
+
+func GetStickiesByBoard(board_id int) []models.Sticky {
 	stickies, err := store.GetStickiesByBoard(board_id)
 
 	if err != nil {

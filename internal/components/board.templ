@@ -35,7 +35,7 @@ templ RenderBoard(b models.Board) {
     <div class="container">
         <h1>{ b.Name }</h1>
         <div id="board" class="board">
-            for _, sticky := range services.GetStickies(b.Id) {
+            for _, sticky := range services.GetStickiesByBoard(b.Id) {
                 @RenderSticky(sticky)
             }
         </div>

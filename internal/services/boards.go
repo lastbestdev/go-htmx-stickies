@@ -22,6 +22,7 @@ func CreateBoard(name string) int {
 
 func GetBoard(id int) *models.Board {
 	board, err := store.GetBoard(id)
+
 	if err != nil {
 		fmt.Printf("Error getting board from store: %v\n", err)
 		return nil

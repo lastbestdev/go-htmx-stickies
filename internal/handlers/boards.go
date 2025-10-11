@@ -43,9 +43,12 @@ func getBoard(w http.ResponseWriter, r *http.Request) {
 func createBoard(w http.ResponseWriter, r *http.Request) {
 	name := r.FormValue("name")
 
-	board := services.CreateBoard(name)
+	board_id := services.CreateBoard(name)
+
+	// get new board
+	board := services.GetBoard(board_id)
 
 	// render new board component
-	component := components.RenderBoard(board)
+	component := components.RenderBoard(*board)
 	ComponentRenderer(component)(w, r)
 }

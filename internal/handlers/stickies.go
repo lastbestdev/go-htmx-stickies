@@ -33,10 +33,13 @@ func postSticky(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	sticky := services.CreateSticky(content, boardId)
+	sticky_id := services.CreateSticky(content, boardId)
+
+	// get new sticky from db
+	sticky := services.GetSticky(sticky_id)
 
 	// render new sticky component
-	component := components.RenderSticky(sticky)
+	component := components.RenderSticky(*sticky)
 	ComponentRenderer(component)(w, r)
 }
 

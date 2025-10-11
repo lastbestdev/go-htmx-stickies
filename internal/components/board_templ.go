@@ -52,7 +52,7 @@ func RenderBoard(b models.Board) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for _, sticky := range services.GetStickies(b.Id) {
+		for _, sticky := range services.GetStickiesByBoard(b.Id) {
 			templ_7745c5c3_Err = RenderSticky(sticky).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
