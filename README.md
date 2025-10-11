@@ -11,7 +11,8 @@ htmx + go
     - delete stickies 
 
 ## working on
-- [ ] feature: add database 
+- [x] feature: add database 
+- [ ] fix: create boards/stickies rending error/bug
 - [ ] styling: make UI look not terrible
 
 ## demo (404: css not found)
