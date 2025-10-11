@@ -2,10 +2,9 @@ package services
 
 import (
 	"fmt"
-	"time"
-
 	"stickies/internal/models"
 	"stickies/internal/store"
+	"time"
 )
 
 func CreateBoard(name string) int {
@@ -17,7 +16,7 @@ func CreateBoard(name string) int {
 		return -1
 	}
 
-	return board_id
+	return int(board_id)
 }
 
 func GetBoard(id int) *models.Board {

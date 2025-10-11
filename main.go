@@ -7,7 +7,6 @@ import (
 	"stickies/internal/components"
 	"stickies/internal/db"
 	"stickies/internal/handlers"
-	"stickies/internal/services"
 
 	"github.com/gorilla/mux"
 )
@@ -24,12 +23,12 @@ func main() {
 	db.InitDB(username, password, port)
 
 	// create a sticky board (TODO: remove)
-	board_id := services.CreateBoard("Goat Debate")
+	// board_id := services.CreateBoard("Goat Debate")
 
 	// create 3 test stickies (TODO: remove)
-	services.CreateSticky("Kobe Bean Bryant. Duh", board_id)
-	services.CreateSticky("MJ has 6 rings", board_id)
-	services.CreateSticky("LeBron has 50k pts! Cmon bro im not even glazing just hear me out his impact on the game is immeasurable and there will never be another Lebron James. The COVID ring obviously counts dude don't be like that. If anything it counts more because of the hardship of playing during a global pandemic! Lets be serious here", board_id)
+	// services.CreateSticky("Kobe Bean Bryant. Duh", 1)
+	// services.CreateSticky("MJ has 6 rings", 1)
+	// services.CreateSticky("LeBron has 50k pts! Cmon bro im not even glazing just hear me out his impact on the game is immeasurable and there will never be another Lebron James. The COVID ring obviously counts dude don't be like that. If anything it counts more because of the hardship of playing during a global pandemic! Lets be serious here", 1)
 
 	// create router
 	router := mux.NewRouter()

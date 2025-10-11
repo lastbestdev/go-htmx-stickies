@@ -16,7 +16,7 @@ func CreateSticky(content string, board_id int) int {
 		return -1
 	}
 
-	return sticky_id
+	return int(sticky_id)
 }
 
 func GetSticky(sticky_id int) *models.Sticky {

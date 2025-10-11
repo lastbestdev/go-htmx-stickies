@@ -7,19 +7,18 @@ import (
 	_ "github.com/lib/pq"
 )
 
-type Store struct {
-	db *sql.DB
-}
-
-var store *Store
+var db *sql.DB
 
 func InitDB(username, password, port string) (bool, error) {
-	db, _ := sql.Open("postgres", "postgres://"+username+":"+password+"@localhost:"+port+"/postgres?sslmode=disable")
+	DB, _ := sql.Open("postgres", "postgres://"+username+":"+password+"@localhost:"+port+"/postgres?sslmode=disable")
 
-	// Confirm a successful connection.
-	if err := db.Ping(); err != nil {
+	// Confirm a successful connection
+	if err := DB.Ping(); err != nil {
 		log.Fatal(err)
 	}
+
+	// Keep ref to db handle
+	db = DB
 
 	// Ensure tables exist
 	if err := initializeTables(db); err != nil {
@@ -27,10 +26,9 @@ func InitDB(username, password, port string) (bool, error) {
 		return false, err
 	}
 
-	store = &Store{db: db}
 	return true, nil
 }
 
-func GetStore() *Store {
-	return store
+func GetDB() *sql.DB {
+	return db
 }
