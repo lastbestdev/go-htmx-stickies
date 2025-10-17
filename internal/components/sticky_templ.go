@@ -34,7 +34,7 @@ func RenderSticky(s models.Sticky) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n\t\t.sticky {\n            height: 100px;\n            width: 100px;\n\n            padding: 4px;\n            border: 1px solid black;\n\t\t\tbackground-color: var(--primary-sticky-color);\n        }\t\n\n\t\t.yellow {\n\t\t\tbackground-color: var(--primary-sticky-color);\n\t\t}\n\t\t.green {\n\t\t\tbackground-color: var(--secondary-sticky-color);\n\t\t}\n\t\t.blue {\n\t\t\tbackground-color: var(--tertiary-sticky-color);\n\t\t}\n\n\t\t.content {\n\t\t\toverflow: hidden;\n\t\t\ttext-overflow: ellipsis;\n\t\t}\n\n\t\t.delete-x {\n\t\t\tfloat: right;\n\t\t\tcolor: red;\n\t\t\tcursor: pointer;\n\t\t\tpadding: 0 4px;\n\t\t}\n\t</style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n\t\t.sticky {\n            height: 100px;\n            width: 100px;\n\n            padding: 4px;\n            border: 1px solid black;\n\t\t\tbackground-color: var(--primary-sticky-color);\n        }\t\n\n\t\t.yellow {\n\t\t\tbackground-color: var(--primary-sticky-color);\n\t\t}\n\t\t.green {\n\t\t\tbackground-color: var(--secondary-sticky-color);\n\t\t}\n\t\t.blue {\n\t\t\tbackground-color: var(--tertiary-sticky-color);\n\t\t}\n\n\t\t.content {\n\t\t\toverflow: hidden;\n\t\t\ttext-overflow: ellipsis;\n\t\t}\n\n\t\t.delete {\n\t\t\tfloat: right;\n\t\t\tcursor: pointer;\n\t\t\tcolor: rgb(227, 62, 62);\n\t\t}\n\t</style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -50,7 +50,7 @@ func RenderSticky(s models.Sticky) templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs("sticky-" + strconv.Itoa(s.Id))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/sticky.templ`, Line: 42, Col: 41}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/sticky.templ`, Line: 41, Col: 41}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -69,14 +69,14 @@ func RenderSticky(s models.Sticky) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\"><span hx-delete=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\"><span class=\"delete fas fa-trash fa-sm\" hx-delete=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs("/stickies/" + strconv.Itoa(s.Id))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/sticky.templ`, Line: 43, Col: 53}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/sticky.templ`, Line: 42, Col: 87}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
@@ -89,20 +89,20 @@ func RenderSticky(s models.Sticky) templ.Component {
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs("#sticky-" + strconv.Itoa(s.Id))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/sticky.templ`, Line: 43, Col: 119}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/sticky.templ`, Line: 42, Col: 153}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" class=\"delete-x\">X</span><p class=\"content\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\"></span><p class=\"content\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(s.Content)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/sticky.templ`, Line: 44, Col: 32}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/components/sticky.templ`, Line: 43, Col: 32}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {

@@ -9,7 +9,8 @@ import (
 templ RenderBoard(b models.Board) {
     <head>
         <script src="/assets/htmx.min.js"></script>
-        <link rel="stylesheet" href="/assets/style.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/all.min.css">
     </head>
 
     <style>
@@ -32,7 +33,7 @@ templ RenderBoard(b models.Board) {
 
         .board {           
             width: 100%; 
-            padding: 8px;
+            padding: 8px 0px;
             display: flex;
             flex-direction: row;
             gap: 8px;
@@ -49,8 +50,10 @@ templ RenderBoard(b models.Board) {
                 @RenderSticky(sticky)
             }
         </div>
-        <button hx-get={ "/forms/add-sticky?board_id=" + strconv.Itoa(b.Id) } hx-swap="outerHTML">Add Sticky</button>
-        <button hx-delete={ "/boards/" + strconv.Itoa(b.Id) } class="danger">Delete Board</button>
+        <div>
+            <button hx-get={ "/forms/add-sticky?board_id=" + strconv.Itoa(b.Id) } hx-swap="outerHTML">Add Sticky</button>
+            <button hx-delete={ "/boards/" + strconv.Itoa(b.Id) } class="danger">Delete Board</button>
+        </div>
     </div>
     
 }

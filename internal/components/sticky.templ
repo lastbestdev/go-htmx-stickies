@@ -31,16 +31,15 @@ templ RenderSticky(s models.Sticky) {
 			text-overflow: ellipsis;
 		}
 
-		.delete-x {
+		.delete {
 			float: right;
-			color: red;
 			cursor: pointer;
-			padding: 0 4px;
+			color: rgb(227, 62, 62);
 		}
 	</style>
 
 	<div id={ "sticky-" + strconv.Itoa(s.Id) } class={ "sticky " + s.Color }>
-		<span hx-delete={ "/stickies/" + strconv.Itoa(s.Id) } hx-swap="outerHTML" hx-target={ "#sticky-" + strconv.Itoa(s.Id) } class="delete-x">X</span>
+		<span class="delete fas fa-trash fa-sm" hx-delete={ "/stickies/" + strconv.Itoa(s.Id) } hx-swap="outerHTML" hx-target={ "#sticky-" + strconv.Itoa(s.Id) }></span>
 		<p class="content">{ s.Content }</p>
 	</div>
 }
