@@ -20,6 +20,7 @@ func initializeTables(db *sql.DB) error {
 		CREATE TABLE IF NOT EXISTS stickies (
 			id SERIAL PRIMARY KEY,
 			content TEXT NOT NULL,
+			color TEXT DEFAULT 'yellow',
 			board_id INTEGER REFERENCES boards(id) ON DELETE CASCADE,
 			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 		);

@@ -21,8 +21,8 @@ func GetSticky(sticky_id int) (*models.Sticky, error) {
 	db := db.GetDB()
 
 	var sticky models.Sticky
-	err := db.QueryRow("SELECT id, content, board_id, created_at FROM stickies WHERE id = $1", sticky_id).Scan(
-		&sticky.Id, &sticky.Content, &sticky.BoardId, &sticky.CreatedAt)
+	err := db.QueryRow("SELECT id, content, board_id, color, created_at FROM stickies WHERE id = $1", sticky_id).Scan(
+		&sticky.Id, &sticky.Content, &sticky.BoardId, &sticky.Color, &sticky.CreatedAt)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -40,11 +40,11 @@ func GetStickiesByBoard(board_id int) ([]models.Sticky, error) {
 	db := db.GetDB()
 
 	var stickies []models.Sticky
-	rows, _ := db.Query("SELECT id, content, board_id, created_at FROM stickies WHERE board_id = $1", board_id)
+	rows, _ := db.Query("SELECT id, content, board_id, color, created_at FROM stickies WHERE board_id = $1", board_id)
 
 	for rows.Next() {
 		var sticky models.Sticky
-		err := rows.Scan(&sticky.Id, &sticky.Content, &sticky.BoardId, &sticky.CreatedAt)
+		err := rows.Scan(&sticky.Id, &sticky.Content, &sticky.BoardId, &sticky.Color, &sticky.CreatedAt)
 
 		if err != nil {
 			fmt.Printf("Unable to read Sticky row: %v", err)

@@ -16,6 +16,16 @@ templ RenderSticky(s models.Sticky) {
 			background-color: var(--primary-sticky-color);
         }	
 
+		.yellow {
+			background-color: var(--primary-sticky-color);
+		}
+		.green {
+			background-color: var(--secondary-sticky-color);
+		}
+		.blue {
+			background-color: var(--tertiary-sticky-color);
+		}
+
 		.content {
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -29,7 +39,7 @@ templ RenderSticky(s models.Sticky) {
 		}
 	</style>
 
-	<div id={ "sticky-" + strconv.Itoa(s.Id) } class="sticky">
+	<div id={ "sticky-" + strconv.Itoa(s.Id) } class={ "sticky " + s.Color }>
 		<span hx-delete={ "/stickies/" + strconv.Itoa(s.Id) } hx-swap="outerHTML" hx-target={ "#sticky-" + strconv.Itoa(s.Id) } class="delete-x">X</span>
 		<p class="content">{ s.Content }</p>
 	</div>

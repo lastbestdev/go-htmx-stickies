@@ -14,5 +14,6 @@ type Sticky struct {
 	Id        int
 	BoardId   int
 	Content   string
+	Color     string
 	CreatedAt time.Time
 }
