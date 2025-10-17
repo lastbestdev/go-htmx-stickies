@@ -22,6 +22,14 @@ templ RenderBoard(b models.Board) {
             gap: 8px;
         }
 
+        .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
         .board {           
             width: 100%; 
             padding: 8px;
@@ -32,13 +40,17 @@ templ RenderBoard(b models.Board) {
     </style>
 
     <div class="container">
-        <h1>{ b.Name }</h1>
-        <div id="board" class="board">
+        <div class="header">
+            <h1>{ b.Name }</h1>
+            <a href="/">Back to menu</a>
+        </div>
+         <div id="board" class="board">
             for _, sticky := range services.GetStickiesByBoard(b.Id) {
                 @RenderSticky(sticky)
             }
         </div>
         <button hx-get={ "/forms/add-sticky?board_id=" + strconv.Itoa(b.Id) } hx-swap="outerHTML">Add Sticky</button>
+        <button hx-delete={ "/boards/" + strconv.Itoa(b.Id) } class="danger">Delete Board</button>
     </div>
     
 }

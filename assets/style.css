@@ -38,6 +38,9 @@ button {
     border-radius: 4px;
     font-size: 16px;
 }
+button.danger {
+    background-color: #dc3545;
+}
 :root {
     --base-padding: 4px;
     --base-margin: 4px;
