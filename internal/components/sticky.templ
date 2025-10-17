@@ -7,14 +7,40 @@ import (
 
 templ RenderSticky(s models.Sticky) {
 	<style>
+		/* Sticky note layout: header (trash) fixed, body scrolls */
 		.sticky {
-            height: 100px;
-            width: 100px;
+			height: 150px;
+			width: 150px;
 
-            padding: 4px;
-            border: 1px solid black;
-			background-color: var(--primary-sticky-color);
-        }	
+			/* make space around edges and use flex layout to separate header and body */
+			padding: 6px;
+			border: 1px solid black;
+			background-color: var(--primary-sticky-color, hsl(48,70%,85%));
+			box-sizing: border-box;
+
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		/* top-right trash stays visible while content scrolls */
+		.delete {
+			/* place in the header area and keep it at the end (right) */
+			align-self: flex-end;
+			cursor: pointer;
+			color: rgb(227, 62, 62);
+			flex: 0 0 auto;
+			margin: 0; /* spacing provided by .sticky gap/padding */
+		}
+
+		/* make the content area flexible and scrollable */
+		.content {
+			flex: 1 1 auto;
+			overflow: auto;
+			white-space: pre-wrap; /* preserve newlines */
+			word-break: break-word;
+			margin: 0; /* reset paragraph margins */
+		}
 
 		.yellow {
 			background-color: var(--primary-sticky-color);
@@ -24,17 +50,6 @@ templ RenderSticky(s models.Sticky) {
 		}
 		.blue {
 			background-color: var(--tertiary-sticky-color);
-		}
-
-		.content {
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
-
-		.delete {
-			float: right;
-			cursor: pointer;
-			color: rgb(227, 62, 62);
 		}
 	</style>
 
