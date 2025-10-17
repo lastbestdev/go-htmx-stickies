@@ -13,8 +13,27 @@ func StickiesHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodPost:
 		postSticky(w, r)
+	default:
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	}
+}
+
+func StickiesDetailHandler(w http.ResponseWriter, r *http.Request) {
+	id := mux.Vars(r)["id"]
+	if id == "" {
+		http.Error(w, "Sticky ID is required", http.StatusBadRequest)
+		return
+	}
+
+	stickyId, err := strconv.Atoi(id)
+	if err != nil {
+		http.Error(w, "Invalid sticky ID", http.StatusBadRequest)
+		return
+	}
+
+	switch r.Method {
 	case http.MethodDelete:
-		deleteSticky(w, r)
+		deleteSticky(stickyId, w, r)
 	default:
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
@@ -43,14 +62,7 @@ func postSticky(w http.ResponseWriter, r *http.Request) {
 	ComponentRenderer(component)(w, r)
 }
 
-func deleteSticky(w http.ResponseWriter, r *http.Request) {
-	id := mux.Vars(r)["id"]
-	stickyId, err := strconv.Atoi(id)
-
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-
+func deleteSticky(stickyId int, w http.ResponseWriter, r *http.Request) {
 	services.DeleteSticky(stickyId)
+	w.WriteHeader(http.StatusNoContent)
 }

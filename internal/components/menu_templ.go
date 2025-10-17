@@ -29,7 +29,7 @@ func RenderMenu() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<head><script src=\"/assets/htmx.min.js\"></script></head><style>\n        .menu {\n            margin: 16px;\n            display: flex;\n            flex-direction: column;\n            gap: 8px;\n        }\n    </style><div class=\"menu\"><h1>Stickies.io</h1><button hx-get=\"/forms/create-board\" hx-swap=\"outerHTML\">Create a board</button></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<head><script src=\"/assets/htmx.min.js\"></script><link rel=\"stylesheet\" href=\"/assets/style.css\"></head><style>\n        .menu {\n            margin: 16px;\n            display: flex;\n            flex-direction: column;\n            gap: 8px;\n        }\n\n        .header {\n            display: flex;\n            flex-direction: row;\n            justify-content: space-between;\n            align-items: center;\n        }\n    </style><div class=\"menu\"><div class=\"header\"><h1>Stickies.io</h1><button hx-get=\"/forms/create-board\" hx-swap=\"outerHTML\">Create a board</button></div><h2>All Boards</h2><div hx-get=\"/boards\" hx-trigger=\"load\" hx-swap=\"outerHTML\"></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

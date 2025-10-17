@@ -35,3 +35,47 @@ func GetBoard(id int) (*models.Board, error) {
 
 	return &board, nil
 }
+
+func DeleteBoard(id int) (bool, error) {
+	db := db.GetDB()
+
+	res, err := db.Exec("DELETE FROM boards WHERE id = $1;", id)
+	if err != nil {
+		fmt.Printf("Error occurred deleting board id=%d: %v\n", id, err)
+		return false, err
+	}
+
+	rowsAffected, _ := res.RowsAffected()
+
+	if rowsAffected > 1 {
+		panic(err)
+	} else if rowsAffected == 0 {
+		fmt.Printf("Board with id=%d not found. Unable to delete\n", id)
+		return false, nil
+	}
+
+	return true, nil
+}
+
+func GetBoards() ([]models.Board, error) {
+	db := db.GetDB()
+
+	var boards []models.Board
+	rows, err := db.Query("SELECT id, name, created_at FROM boards LIMIT 10;")
+	if err != nil {
+		fmt.Printf("Error occurred querying boards: %v\n", err)
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var board models.Board
+		if err := rows.Scan(&board.Id, &board.Name, &board.CreatedAt); err != nil {
+			fmt.Printf("Error occurred scanning board: %v\n", err)
+			return nil, err
+		}
+		boards = append(boards, board)
+	}
+
+	return boards, nil
+}

@@ -60,7 +60,12 @@ func GetStickiesByBoard(board_id int) ([]models.Sticky, error) {
 func DeleteSticky(id int) (bool, error) {
 	db := db.GetDB()
 
-	res, _ := db.Exec("DELETE FROM stickies WHERE id = $1", id)
+	res, err := db.Exec("DELETE FROM stickies WHERE id = $1;", id)
+	if err != nil {
+		fmt.Printf("Error occurred deleting sticky id=%d: %v\n", id, err)
+		return false, err
+	}
+
 	delete_count, err := res.RowsAffected()
 
 	if delete_count > 1 {

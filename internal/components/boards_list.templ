@@ -1,0 +1,44 @@
+package components
+
+import (
+    "strconv"
+    "stickies/internal/models"
+)
+
+templ RenderBoardsList(boards []models.Board) {
+    <style>
+        .boards-list {
+            margin: 16px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .board-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        .board-link:hover .board-item {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .board-item {
+            height: 200px;
+            width: 300px;
+            padding: calc(var(--base-padding) * 4);
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+    </style>
+
+    <div class="boards-list">
+        for _, board := range boards {
+            <a href={ "/boards/" + strconv.Itoa(board.Id) } class="board-link">
+                <div class="board-item">
+                    <h2>{ board.Name }</h2>
+                    <p>Created at: { board.CreatedAt.Format("Jan 2, 2006") }</p>
+                </div>
+            </a>
+        }
+    </div>
+}

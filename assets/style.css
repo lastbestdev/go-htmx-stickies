@@ -1,0 +1,48 @@
+/* main stylesheet, provides font, background, etc. */
+
+html {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0; 
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px 20px;
+}
+h1 {
+    font-size: 36px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 20px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 12px;
+}
+button {
+    cursor: pointer;
+    border: 1px solid #aeb9c5;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+:root {
+    --base-padding: 4px;
+    --base-margin: 4px;
+    --base-border-radius: 4px;
+    --primary-sticky-color: #fffa65;
+    --secondary-sticky-color: #83fc61;
+    --tertiary-sticky-color: #61d4fc;
+}

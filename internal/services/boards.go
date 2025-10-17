@@ -19,6 +19,17 @@ func CreateBoard(name string) int {
 	return int(board_id)
 }
 
+func GetBoards() []models.Board {
+	boards, err := store.GetBoards()
+
+	if err != nil {
+		fmt.Printf("Error getting boards from store: %v\n", err)
+		return nil
+	}
+
+	return boards
+}
+
 func GetBoard(id int) *models.Board {
 	board, err := store.GetBoard(id)
 
@@ -28,4 +39,15 @@ func GetBoard(id int) *models.Board {
 	}
 
 	return board
+}
+
+func DeleteBoard(id int) bool {
+	is_deleted, err := store.DeleteBoard(id)
+
+	if err != nil {
+		fmt.Printf("Error deleting board in store: %v\n", err)
+		return false
+	}
+
+	return is_deleted
 }

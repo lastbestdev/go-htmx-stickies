@@ -3,6 +3,7 @@ package components
 templ RenderMenu() {
     <head>
         <script src="/assets/htmx.min.js"></script>
+        <link rel="stylesheet" href="/assets/style.css">
     </head>
 
     <style>
@@ -12,11 +13,22 @@ templ RenderMenu() {
             flex-direction: column;
             gap: 8px;
         }
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
     </style>
 
     <div class="menu">
-        <h1>Stickies.io</h1>
-        <button hx-get="/forms/create-board" hx-swap="outerHTML">Create a board</button>
+        <div class="header">
+            <h1>Stickies.io</h1>
+            <button hx-get="/forms/create-board" hx-swap="outerHTML">Create a board</button>
+        </div>
+        <h2>All Boards</h2>
+       <div hx-get="/boards" hx-trigger="load" hx-swap="outerHTML" />
     </div>
     
 }
