@@ -7,8 +7,8 @@ import (
 	"time"
 )
 
-func CreateSticky(content string, board_id int) int {
-	sticky := models.Sticky{Content: content, CreatedAt: time.Now(), BoardId: board_id}
+func CreateSticky(content string, board_id int, color string) int {
+	sticky := models.Sticky{Content: content, CreatedAt: time.Now(), BoardId: board_id, Color: color}
 
 	sticky_id, err := store.CreateSticky(&sticky)
 	if err != nil {

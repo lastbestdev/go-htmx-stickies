@@ -10,7 +10,7 @@ import (
 func CreateSticky(sticky *models.Sticky) (int64, error) {
 	db := db.GetDB()
 
-	res, err := db.Exec("INSERT INTO stickies (content, board_id) VALUES ($1, $2)", sticky.Content, sticky.BoardId)
+	res, err := db.Exec("INSERT INTO stickies (content, board_id, color) VALUES ($1, $2, $3)", sticky.Content, sticky.BoardId, sticky.Color)
 
 	fmt.Printf("res: %v\n", res)
 

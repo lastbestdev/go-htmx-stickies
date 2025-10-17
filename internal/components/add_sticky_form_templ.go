@@ -42,7 +42,7 @@ func RenderAddStickyForm(board_id int) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"> <button type=\"submit\">Add Sticky</button></form>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"> <select name=\"color\"><option value=\"yellow\">Yellow</option> <option value=\"green\">Green</option> <option value=\"blue\">Blue</option></select> <button type=\"submit\">Add Sticky</button></form>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

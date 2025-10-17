@@ -46,13 +46,14 @@ func postSticky(w http.ResponseWriter, r *http.Request) {
 	}
 
 	content := r.FormValue("content")
+	color := r.FormValue("color")
 	boardId, err := strconv.Atoi(r.FormValue("board_id"))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	sticky_id := services.CreateSticky(content, boardId)
+	sticky_id := services.CreateSticky(content, boardId, color)
 
 	// get new sticky from db
 	sticky := services.GetSticky(sticky_id)

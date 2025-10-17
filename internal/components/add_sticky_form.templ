@@ -16,6 +16,11 @@ templ RenderAddStickyForm(board_id int) {
     <form class="add-sticky-form" hx-post="/stickies" hx-target="#board" hx-swap="beforeend">
         <textarea name="content" placeholder="Add note content..."></textarea>
         <input type="hidden" name="board_id" value={ board_id }>
+        <select name="color">
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+        </select>
         <button type="submit">Add Sticky</button>
     </form>
 }
