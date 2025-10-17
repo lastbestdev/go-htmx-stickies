@@ -18,16 +18,16 @@ templ RenderMenu() {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            align-items: center;
+            align-items: start;
         }
     </style>
 
     <div class="menu">
+        <h1>Stickies.io </h1>
         <div class="header">
-            <h1>Stickies.io</h1>
+            <h2>All Boards</h2>
             <button hx-get="/forms/create-board" hx-swap="outerHTML">Create a board</button>
         </div>
-        <h2>All Boards</h2>
        <div hx-get="/boards" hx-trigger="load" hx-swap="outerHTML" />
     </div>
     

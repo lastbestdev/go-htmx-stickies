@@ -61,7 +61,7 @@ func GetBoards() ([]models.Board, error) {
 	db := db.GetDB()
 
 	var boards []models.Board
-	rows, err := db.Query("SELECT id, name, created_at FROM boards LIMIT 10;")
+	rows, err := db.Query("SELECT id, name, created_at FROM boards LIMIT 20;")
 	if err != nil {
 		fmt.Printf("Error occurred querying boards: %v\n", err)
 		return nil, err

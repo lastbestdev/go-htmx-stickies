@@ -34,7 +34,7 @@ func RenderSticky(s models.Sticky) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n\t\t.sticky {\n            height: 100px;\n            width: 100px;\n\n            padding: 4px;\n            border: 1px solid black;\n        }\t\n\n\t\t.content {\n\t\t\toverflow: hidden;\n\t\t\ttext-overflow: ellipsis;\n\t\t}\n\n\t\t.delete-x {\n\t\t\tfloat: right;\n\t\t\tcolor: red;\n\t\t\tcursor: pointer;\n\t\t\tborder: 1px solid red;\n\t\t\tpadding: 0 4px;\n\t\t}\n\t</style><div id=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n\t\t.sticky {\n            height: 100px;\n            width: 100px;\n\n            padding: 4px;\n            border: 1px solid black;\n\t\t\tbackground-color: var(--primary-sticky-color);\n        }\t\n\n\t\t.content {\n\t\t\toverflow: hidden;\n\t\t\ttext-overflow: ellipsis;\n\t\t}\n\n\t\t.delete-x {\n\t\t\tfloat: right;\n\t\t\tcolor: red;\n\t\t\tcursor: pointer;\n\t\t\tpadding: 0 4px;\n\t\t}\n\t</style><div id=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

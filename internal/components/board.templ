@@ -1,14 +1,15 @@
 package components
 
-import(
-   "strconv" 
+import (
+   "strconv"
    "stickies/internal/models"
-"stickies/internal/services"
+   "stickies/internal/services"
 )
 
 templ RenderBoard(b models.Board) {
     <head>
         <script src="/assets/htmx.min.js"></script>
+        <link rel="stylesheet" href="/assets/style.css">
     </head>
 
     <style>
@@ -27,8 +28,6 @@ templ RenderBoard(b models.Board) {
             display: flex;
             flex-direction: row;
             gap: 8px;
-
-            border: 2px solid red;
         }
     </style>
 
