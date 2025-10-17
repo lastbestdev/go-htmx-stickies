@@ -13,11 +13,11 @@ import (
 
 func main() {
 	// initialize db connection
-	username := os.Getenv("DB_USER")
-	password := os.Getenv("DB_PASSWORD")
-	port := os.Getenv("DB_PORT")
+	username := os.Getenv("POSTGRES_USER")
+	password := os.Getenv("POSTGRES_PASSWORD")
+	port := "5432"
 
-	if username == "" || password == "" || port == "" {
+	if username == "" || password == "" {
 		log.Fatal("Database credentials not set in environment variables")
 	}
 	db.InitDB(username, password, port)

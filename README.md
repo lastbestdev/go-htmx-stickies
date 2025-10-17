@@ -10,11 +10,8 @@ you will need the following installed:
 - docker 
 
 ### steps
-1. start a `postgres` instance inside a docker container
-2. set the following environment variables to connect the application to postgres:
-    - `DB_USER`: username for authenticating to postgres
-    - `DB_PASSWORD`: password for the user
-    - `DB_PORT`: the port the postgres container is mapped to (ex. `--port 5432:5432`)
+1. copy the example env file and update as needed. run `cp .env.example .env` and edit the new file
+2. start a `postgres` instance inside a docker container. `docker-compose.yml` is included for this, run: `docker compose up`
 3. start the application: `go run .`
 
 ### tips
